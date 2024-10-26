@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Double Riemann Sum Calculator</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Center content */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f3f4f6;
+        }
+
+        /* Form container styling */
+        .container {
+            max-width: 500px;
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Form label styling */
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #555555;
+        }
+
+        /* Input fields styling */
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        /* Button styling */
+        button {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #0073e6;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #005bb5;
+        }
+
+        /* Result section styling */
+        .result {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .result h3 {
+            color: #0073e6;
+        }
+
+        .result img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-top: 1rem;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Double Riemann Sum Calculator</h2>
+    <form method="POST">
+        <label for="function">Enter function f(x, y):</label>
+        <input type="text" name="function" required placeholder="e.g., x**2 + y**2">
+
+        <label for="x_min">x Range (Min):</label>
+        <input type="number" step="any" name="x_min" required>
+
+        <label for="x_max">x Range (Max):</label>
+        <input type="number" step="any" name="x_max" required>
+
+        <label for="y_min">y Range (Min):</label>
+        <input type="number" step="any" name="y_min" required>
+
+        <label for="y_max">y Range (Max):</label>
+        <input type="number" step="any" name="y_max" required>
+
+        <label for="method">Approximation Method:</label>
+        <select name="method">
+            <option value="midpoint">Midpoint</option>
+            <option value="top_left">Top Left</option>
+            <option value="top_right">Top Right</option>
+            <!-- Add more options here as needed -->
+        </select>
+
+        <label for="subdivisions">Number of Subdivisions:</label>
+        <input type="number" name="subdivisions" required min="1" placeholder="e.g., 10">
+
+        <button type="submit">Calculate</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <h3>Riemann Sum Result: {{ result }}</h3>
+        <img src="data:image/png;base64,{{ plot_url }}" alt="3D Plot">
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
